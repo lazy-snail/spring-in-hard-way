@@ -12,7 +12,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 
 # 通过read_csv来读取我们的目的数据集
-adv_data = pd.read_csv("D:\prj\py\py37\Sim\linear_regression\Advertising1.csv")
+adv_data = pd.read_csv("D:\prj\py\Sim\linear_regression\sim.csv")
 # 清洗不需要的数据
 new_adv_data = adv_data.iloc[:, 1:]
 # 得到我们所需要的数据集且查看其前几列以及数据形状
@@ -59,11 +59,11 @@ b = model.coef_  # 回归系数
 print("线性回归：", model)
 print("最佳拟合线:截距", a, ",回归系数：", b)
 
-# m = SVR(kernel="linear")
-# m.fit(X_train, Y_train)
-# print("SVR回归：")
+m = SVR(kernel="linear", gamma='auto')
+m.fit(X_train, Y_train)
+print("SVR回归：")
 # print(m.predict(X_test))
-# print(m.score(X_test, Y_test))
+print(m.score(X_test, Y_test))
 
 #
 # R方检测
@@ -86,7 +86,8 @@ Y_pred = model.predict(X_test)
 print("线性回归预测：", Y_pred)
 #
 plt.plot(range(len(Y_pred)), Y_pred, 'r', label="predict")
-plt.plot(range(len(Y_pred)), Y_test, 'b', label="predict")
+plt.plot(range(len(Y_pred)), Y_test, 'b', label="real")
+plt.legend(loc="upper right")
 
 # # 显示图像
 plt.show()
