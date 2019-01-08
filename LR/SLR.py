@@ -1,53 +1,42 @@
 # -*- coding: utf-8 -*-
 
-# Created by Neil on 2019/1/7.
+# Created by Neil on 2019/1/8.
 
-import pandas as pd
-import numpy as np
+
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
-from pandas import DataFrame, Series
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVR
+from sklearn.model_selection import train_test_split
 
 # 通过read_csv来读取我们的目的数据集
-adv_data = pd.read_csv("D:\prj\py\py37\Sim\linear_regression\sim.csv")
+adv_data = pd.read_csv("D:\prj\py\py37\Sim\dat\sysUtilization.csv")
 # 清洗不需要的数据
-new_adv_data = adv_data.iloc[:, 1:]
+new_adv_data = adv_data.iloc[:, 0:5]
 # 得到我们所需要的数据集且查看其前几列以及数据形状
-# print('head:', new_adv_data.head(), '\nShape:', new_adv_data.shape)
+print('head:', new_adv_data.head(), '\nShape:', new_adv_data.shape)
 #
 # # 数据描述
 print(new_adv_data.describe())
-# 缺失值检验
-# print(new_adv_data[new_adv_data.isnull() == True].count())
-#
+
 # 箱型图
-# new_adv_data.boxplot()
-# # plt.savefig("boxplot.png")
-# plt.show()
-
-# 相关系数矩阵 r(相关系数) = x和y的协方差/(x的标准差*y的标准差) == cov（x,y）/σx*σy
-# 相关系数0~0.3弱相关0.3~0.6中等程度相关0.6~1强相关
-# print(new_adv_data.corr())
-#
-# 通过加入一个参数kind='reg'，seaborn可以添加一条最佳拟合直线和95%的置信带。
-sns.pairplot(new_adv_data, x_vars=['cpu', 'mem', 'disk'], y_vars='p', height=7, aspect=0.8, kind='reg')
-# sns.pairplot(new_adv_data, x_vars=['TV', 'radio'])
-# plt.savefig("pairplot.png")
+new_adv_data.boxplot()
+# plt.savefig("boxplot.png")
 plt.show()
-#
-X_train, X_test, Y_train, Y_test = train_test_split(new_adv_data.iloc[:, :3], new_adv_data.p)
 
-print("原始数据特征:", new_adv_data.iloc[:, :3].shape,
+sns.pairplot(new_adv_data, x_vars=['cpu(%)', 'mem(%)', 'disk_io(Mbps)', 'net_io(Mbps)'], y_vars='power', height=7,
+             aspect=0.8, kind='reg')
+plt.show()
+
+X_train, X_test, Y_train, Y_test = train_test_split(new_adv_data.iloc[:, 1:5], new_adv_data.power)
+print("原始数据特征:", new_adv_data.iloc[:, 1:5].shape,
       ",训练数据特征:", X_train.shape,
       ",测试数据特征:", X_test.shape)
 #
-print("原始数据标签:", new_adv_data.p.shape,
+print("原始数据标签:", new_adv_data.power.shape,
       ",训练数据标签:", Y_train.shape,
       ",测试数据标签:", Y_test.shape)
-#
+
 model = LinearRegression()
 #
 model.fit(X_train, Y_train)
@@ -56,14 +45,8 @@ a = model.intercept_  # 截距
 #
 b = model.coef_  # 回归系数
 #
-print("线性回归：", model)
+print("简单线性回归：", model)
 print("最佳拟合线:截距", a, ",回归系数：", b)
-
-# m = SVR(kernel="linear")
-# m.fit(X_train, Y_train)
-# print("SVR回归：")
-# print(m.predict(X_test))
-# print(m.score(X_test, Y_test))
 
 #
 # R方检测
@@ -78,15 +61,11 @@ print("最佳拟合线:截距", a, ",回归系数：", b)
 score = model.score(X_test, Y_test)
 #
 print("R方检测:", score)
-#
-# 对线性回归进行预测
-#
+
 Y_pred = model.predict(X_test)
 #
-print("线性回归预测：", Y_pred)
+# print("线性回归预测：", Y_pred)
 #
 plt.plot(range(len(Y_pred)), Y_pred, 'r', label="predict")
 plt.plot(range(len(Y_pred)), Y_test, 'b', label="real")
-
-# # 显示图像
 plt.show()
