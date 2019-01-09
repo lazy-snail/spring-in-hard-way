@@ -24,7 +24,7 @@ new_adv_data.boxplot()
 # plt.savefig("boxplot.png")
 plt.show()
 
-sns.pairplot(new_adv_data, x_vars=['cpu(%)', 'mem(%)', 'disk_io(Mbps)', 'net_io(Mbps)'], y_vars='power', height=7,
+sns.pairplot(new_adv_data, x_vars=['cpu', 'mem', 'disk_io(Mbps)', 'net_io(Mbps)'], y_vars='power', height=7,
              aspect=0.8, kind='reg')
 plt.show()
 

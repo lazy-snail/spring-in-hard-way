@@ -52,7 +52,7 @@ def get_datainfo(datapath):
 def load_train_test_set(datapath):
     file = pd.read_csv(datapath)
     p = file.columns[0]
-    n = len(file.columns) - 1
+    n = len(file.columns)
     return train_test_split(file.iloc[:, 1:n], file[p], test_size=0.25)
 
 
@@ -70,7 +70,7 @@ def draw_pairplot(datapath):
     sns.pairplot(file, x_vars=cols[1:5], y_vars=cols[0], height=7, aspect=0.8, kind='reg')
     plt.show()
 
-# datapath = "D:\prj\py\py37\Sim\dat\sysUtilization.csv"
+# datapath = "D:\prj\py\py37\Sim\dat\\test.csv"
 # get_datainfo(datapath)
 # draw_pairplot(datapath)
 
