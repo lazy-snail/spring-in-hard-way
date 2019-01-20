@@ -6,7 +6,7 @@ import random
 
 def get_power(c, m, ep):
     res = (375.9 * c - 401 * c * c + 164.5 * c * c * c \
-           - 30.7 * m + 41.9 * m * m - 19.9 * m * m * m) \
+           - 70.7 * m + 61.9 * m * m - 59.9 * m * m * m) \
           / 1000000 + 230 + ep
     return "%.2f" % res
 
