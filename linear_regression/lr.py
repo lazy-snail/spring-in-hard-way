@@ -40,6 +40,6 @@ def lasso_regression_test(datapath):
     plt.show()
 
 
-dp = "D:\prj\py\py37\Sim\dat\\test.csv"
+dp = "D:\prj\py\py37\Sim\dat\\sysUtilization1.csv"
 datautils.get_datainfo(dp)
 lasso_regression_test(dp)

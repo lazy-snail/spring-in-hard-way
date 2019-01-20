@@ -32,7 +32,7 @@ from sklearn.model_selection import train_test_split
 # ax.set_xlabel('X')
 # plt.show()
 
-data = pd.read_csv("D:\prj\py\py37\Sim\dat\\test.csv")
+data = pd.read_csv("D:\prj\py\py37\Sim\dat\\sysUtilization1.csv")
 x_data = data.cpu
 y_data = data.power
 
