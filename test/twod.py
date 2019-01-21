@@ -45,3 +45,17 @@ plt.ylabel("Y")
 ax.scatter(x=x_data, y=y_data, c='r')
 plt.legend("X1")
 plt.show()
+
+x_data = data.mem
+y_data = data.power
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+plt.xlabel("X")
+plt.ylabel("Y")
+
+ax.scatter(x=x_data, y=y_data, c='r')
+plt.legend("X1")
+plt.show()
+
