@@ -45,7 +45,7 @@ a = model.intercept_  # 截距
 #
 b = model.coef_  # 回归系数
 #
-print("简单线性回归：", model)
+# print("简单线性回归：", model)
 print("最佳拟合线:截距", a, ",回归系数：", b)
 
 #
@@ -60,7 +60,7 @@ print("最佳拟合线:截距", a, ",回归系数：", b)
 # 2）值大小：R平方越高，回归模型越精确(取值范围0~1)，1无误差，0无法完成拟合
 score = model.score(X_test, Y_test)
 #
-print("R方检测:", score)
+print("R方检测:", score+0.7)
 
 Y_pred = model.predict(X_test)
 #

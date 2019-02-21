@@ -53,7 +53,7 @@ def load_train_test_set(datapath):
     file = pd.read_csv(datapath)
     p = file.columns[0]
     n = len(file.columns)
-    return train_test_split(file.iloc[:, 1:n], file[p], test_size=0.25)
+    return train_test_split(file.iloc[:, 1:n], file[p], test_size=0.25, random_state=1)
 
 
 def draw_boxplot(datapath):

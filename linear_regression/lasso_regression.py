@@ -16,10 +16,16 @@ def lasso_regression_test(datapath):
     regr = linear_model.Lasso()
     # 拟合训练数据
     regr.fit(X_train, Y_train)
+
     # 线性拟合结果：系数、截距
-    print('Coefficients: %s\nintercept: %.2f' % (regr.coef_, regr.intercept_))
+    a = regr.intercept_  # 截距
+    #
+    b = regr.coef_  # 回归系数
+    #
+    # print("简单线性回归：", regr)
+    print("最佳拟合线:截距", a, ",回归系数：", b)
     # 残差平方和
-    print("Residual sum of square: %.2f" % np.mean((regr.predict(X_test) - Y_test) ** 2))
+    print("残差平方和: %.2f" % np.mean((regr.predict(X_test) - Y_test) ** 2))
     """
     拟合度：R方检测
     决定系数r平方
@@ -31,13 +37,23 @@ def lasso_regression_test(datapath):
     对于决定系数R平方来说1） 回归线拟合程度：有多少百分比的y波动刻印有回归线来描述(x的波动变化)
     2）值大小：R平方越高，回归模型越精确(取值范围0~1)，1无误差，0无法完成拟合
     """
-    print('Score: %.2f' % regr.score(X_test, Y_test))
+    print('R方检测: %.2f' % regr.score(X_test, Y_test))
 
     # 测试结果与实际结果图形对比
     Y_pred = regr.predict(X_test)
     plt.plot(range(len(Y_pred)), Y_pred, 'r', label="predict")
     plt.plot(range(len(Y_pred)), Y_test, 'b', label="real")
     plt.show()
+
+    print(type(Y_test))
+    # print(Y_test[:]+3)
+    i = 0
+    for idx in Y_test.index:
+        pred = Y_pred[i]
+        i += 1
+        real = Y_test[idx]
+        ab = (pred-real)/real
+        print(ab)
 
 
 dp = "D:\prj\py\py37\Sim\dat\\sysUtilization1.csv"
