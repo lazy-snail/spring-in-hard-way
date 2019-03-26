@@ -4,3 +4,4 @@ target
 cmake-build-debug
 *.iml
 .class
+.pyc
