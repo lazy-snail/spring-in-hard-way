@@ -19,5 +19,13 @@
             <systemPath>${project.basedir}/libs/cloudsim-4.0.jar
             </systemPath>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge</groupId>
+            <artifactId>jswarm_pso</artifactId>
+            <version>2.08</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/jswarm-pso_2_08.jar
+            </systemPath>
+        </dependency>
     </dependencies>
 </project>
