@@ -9,6 +9,7 @@ Created on Thu Sep 24 16:37:21 2015
 
 @author: Eddy_zheng
 """
+import os, sys
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -33,7 +34,9 @@ from sklearn.model_selection import train_test_split
 # plt.show()
 PLT_FIGURE = plt.figure(figsize=(12, 9))
 
-data = pd.read_csv("D:\prj\py\py37\Sim\dat\\sysUtilization2.csv")
+path = str(os.path.abspath('..'))
+data = pd.read_csv(path + "\\dat\\sysUtilization2.csv")
+
 x = data.mem
 y = data.cpu
 z = data.power

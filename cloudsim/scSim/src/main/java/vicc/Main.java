@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class Main {
 
-    public static final String WORKLOAD = "planetlab";
+    public static String WORKLOAD = "planetlab";
 
     public static boolean doLog = true;
 
@@ -38,10 +38,8 @@ public class Main {
 //                return this.getClass().getResource("/").getPath();
 //            }
 //        }.getPath().substring(1);
-        // 静态方法中获取当前执行路径2
-        String currPath = Class.class.getClass().getResource("/").getPath();
 
-        File input = new File(currPath + "/" + WORKLOAD + "/" + d);
+        File input = new File(WORKLOAD + "/" + d);
         if (!input.isDirectory()) {
             quit("no workload for day " + d);
         }
@@ -85,6 +83,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // 静态方法中获取当前执行路径2
+        String currPath = Class.class.getClass().getResource("/").getPath();
+        WORKLOAD = currPath + WORKLOAD;
 
         CumulatedRevenue revenues = new CumulatedRevenue();
         if (args.length < 1) {
@@ -115,6 +116,7 @@ public class Main {
         } else {
             //a single day
             try {
+                System.out.println("Day " + args[1]);
                 Revenue r = simulateDay(args[1], policy);
                 System.out.println(r);
                 revenues.add(r);

@@ -2,6 +2,7 @@
 
 # Created by Neil on 2019/1/8.
 
+import os, sys
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import linear_model
@@ -52,10 +53,11 @@ def lasso_regression_test(datapath):
         pred = Y_pred[i]
         i += 1
         real = Y_test[idx]
-        ab = (pred-real)/real
-        print(ab)
+        ab = (pred - real) / real * 100
+        print("%.2f" % ab)
 
 
-dp = "D:\prj\py\py37\Sim\dat\\sysUtilization1.csv"
+path = str(os.path.abspath('..'))
+dp = path + "\\dat\\sysUtilization1.csv"
 lasso_regression_test(dp)
 datautils.draw_pairplot(dp)

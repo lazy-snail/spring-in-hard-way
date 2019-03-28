@@ -2,6 +2,7 @@
 
 # Created by Neil on 2019/1/8.
 
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import linear_model
@@ -40,6 +41,7 @@ def lasso_regression_test(datapath):
     plt.show()
 
 
-dp = "D:\prj\py\py37\Sim\dat\\sysUtilization1.csv"
+path = str(os.path.abspath('..'))
+dp = path + "\\dat\\sysUtilization1.csv"
 datautils.get_datainfo(dp)
 lasso_regression_test(dp)

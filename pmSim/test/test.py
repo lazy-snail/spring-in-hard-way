@@ -3,6 +3,7 @@
 # Created by Neil on 2019/1/9.
 
 import math
+import os, sys
 # import matplotlib.pyplot as plt
 # import pandas as pd
 # import seaborn as sns
@@ -38,3 +39,7 @@ for i in range(1000):
     y = random.gauss(0.1, 0.1)
     plt.scatter(x, y)
 plt.show()
+
+print(os.getcwd())
+print(os.path.abspath('.'))
+print(os.path.abspath('..'))
