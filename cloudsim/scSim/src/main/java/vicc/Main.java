@@ -16,13 +16,14 @@ import java.util.*;
 /**
  * Entry point of the project.
  * It just initialises the simulator, create the right scheduling algorithm and runs the simulation.
+ * <p>
+ * Nothing to edit on your side.
  *
-    * Nothing to edit on your side.
  * @author Fabien Hermenier
  */
 public class Main {
 
-    public static final String WORKLOAD = "D:\\prj\\Sim\\cloudsim\\scSim\\target\\classes\\planetlab";
+    public static final String WORKLOAD = "planetlab";
 
     public static boolean doLog = true;
 
@@ -31,9 +32,17 @@ public class Main {
     private static Observers observers = new Observers();
 
     private static Revenue simulateDay(String d, String impl) throws Exception {
+        // 静态方法中获取当前执行路径1
+//        String currPath = new Object() {
+//            public String getPath() {
+//                return this.getClass().getResource("/").getPath();
+//            }
+//        }.getPath().substring(1);
+        // 静态方法中获取当前执行路径2
+        String currPath = Class.class.getClass().getResource("/").getPath();
 
-        File input = new File(WORKLOAD + "/" +  d);
-        if (!input.isDirectory()){
+        File input = new File(currPath + "/" + WORKLOAD + "/" + d);
+        if (!input.isDirectory()) {
             quit("no workload for day " + d);
         }
         //Initialise the simulator
@@ -55,7 +64,7 @@ public class Main {
         VmAllocationPolicy policy = policies.make(impl, hosts);
 
         //the datacenter
-        PowerDatacenter datacenter =  Helper.createDatacenter("Datacenter",hosts,policy);
+        PowerDatacenter datacenter = Helper.createDatacenter("Datacenter", hosts, policy);
 
         prepareLogging(d);
         CloudSim.terminateSimulation(Constants.SIMULATION_LIMIT);
@@ -74,7 +83,9 @@ public class Main {
         return new Revenue(peakPowerObserver, datacenter);
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
+
+
         CumulatedRevenue revenues = new CumulatedRevenue();
         if (args.length < 1) {
             quit("Usage: Main --scheduler [day]");
@@ -88,7 +99,7 @@ public class Main {
                 quit(WORKLOAD + " is not a folder");
             }
 
-            File [] content = input.listFiles();
+            File[] content = input.listFiles();
             Arrays.sort(content);
             for (File f : content) {
                 try {
