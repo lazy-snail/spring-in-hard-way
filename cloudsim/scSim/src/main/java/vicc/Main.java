@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class Main {
 
-    public static String WORKLOAD = "planetlab";
+    public static String WORKLOAD = "workload/planetlab";
 
     public static boolean doLog = true;
 
