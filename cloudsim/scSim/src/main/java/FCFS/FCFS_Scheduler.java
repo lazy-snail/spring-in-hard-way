@@ -28,7 +28,7 @@ public class FCFS_Scheduler {
         long size = 10000; //image size (MB)
         int ram = 512; //vm memory (MB)
         int mips = 250;
-        long bw = 1000;
+        long bw = 10000;
         int pesNumber = 1; //number of cpus
         String vmm = "Xen"; //VMM name
 

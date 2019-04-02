@@ -23,7 +23,7 @@ public class CumulatedRevenue extends Revenue {
     public double compute() {
         double d = 0;
         for (Revenue r : revenues) {
-            d+= r.compute();
+            d += r.compute();
         }
         return d;
     }
@@ -32,7 +32,7 @@ public class CumulatedRevenue extends Revenue {
     public double clientIncomes() {
         double d = 0;
         for (Revenue r : revenues) {
-            d+= r.clientIncomes();
+            d += r.clientIncomes();
         }
         return d;
     }
@@ -41,7 +41,7 @@ public class CumulatedRevenue extends Revenue {
     public double penalties() {
         double d = 0;
         for (Revenue r : revenues) {
-            d+= r.penalties();
+            d += r.penalties();
         }
         return d;
     }
@@ -50,7 +50,7 @@ public class CumulatedRevenue extends Revenue {
     public double energyCost() {
         double d = 0;
         for (Revenue r : revenues) {
-            d+= r.energyCost();
+            d += r.energyCost();
         }
         return d;
     }

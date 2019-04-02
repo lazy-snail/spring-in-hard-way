@@ -38,10 +38,10 @@ public class SJF {
     private static List<Vm> vmlist;
 
     private static List<Vm> createVM(int userId, int vms, int idShift) {
-        //Creates a container to store VMs. This list is passed to the broker later
+        // Creates a container to store VMs. This list is passed to the broker later
         LinkedList<Vm> list = new LinkedList<Vm>();
 
-        //VM Parameters
+        // VM Parameters
         long size = 1000; //image size (MB)
         int ram = 512; //vm memory (MB)
         int mips = 250;
@@ -49,9 +49,9 @@ public class SJF {
         int pesNumber = 1; //number of cpus
         String vmm = "Xen"; //VMM name
         int jk = 1;
-        //create VMs
+        // create VMs
         Vm[] vm = new Vm[vms];
-//Log.printLine("*************************************"+ vms);
+        //Log.printLine("*************************************"+ vms);
         for (int i = 0; i < vms; i++) {
 
             if (i % 2 == 0)
@@ -60,7 +60,7 @@ public class SJF {
                 mips -= jk;
             vm[i] = new Vm(idShift + i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerSpaceShared());
             jk += 2;
-            //else
+            // else
             //	vm[i] = new Vm(idShift + i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
             list.add(vm[i]);
         }
@@ -72,7 +72,7 @@ public class SJF {
         // Creates a container to store Cloudlets
         LinkedList<Cloudlet> list = new LinkedList<Cloudlet>();
 
-        //cloudlet parameters
+        // cloudlet parameters
         long length = 4000;
         long fileSize = 300;
         long outputSize = 300;

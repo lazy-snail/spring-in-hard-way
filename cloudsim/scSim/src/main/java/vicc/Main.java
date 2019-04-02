@@ -32,13 +32,6 @@ public class Main {
     private static Observers observers = new Observers();
 
     private static Revenue simulateDay(String d, String impl) throws Exception {
-        // 静态方法中获取当前执行路径1
-//        String currPath = new Object() {
-//            public String getPath() {
-//                return this.getClass().getResource("/").getPath();
-//            }
-//        }.getPath().substring(1);
-
         File input = new File(WORKLOAD + "/" + d);
         if (!input.isDirectory()) {
             quit("no workload for day " + d);
