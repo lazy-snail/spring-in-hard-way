@@ -1,4 +1,4 @@
-package vicc;
+package myPolicy;
 
 import java.util.HashMap;
 import java.util.List;

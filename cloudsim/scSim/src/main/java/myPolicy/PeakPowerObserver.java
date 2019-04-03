@@ -1,4 +1,4 @@
-package vicc;
+package myPolicy;
 
 import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.core.SimEntity;

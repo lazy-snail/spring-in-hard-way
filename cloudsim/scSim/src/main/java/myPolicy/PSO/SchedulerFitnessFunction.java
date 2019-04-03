@@ -1,4 +1,4 @@
-package PSO;
+package myPolicy.PSO;
 
 import net.sourceforge.jswarm_pso.FitnessFunction;
 

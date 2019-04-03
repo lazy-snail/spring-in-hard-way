@@ -1,4 +1,4 @@
-package PSO;
+package myPolicy.PSO;
 
 public class Constants {
     public static final int NO_OF_TASKS = 100; // number of Cloudlets;

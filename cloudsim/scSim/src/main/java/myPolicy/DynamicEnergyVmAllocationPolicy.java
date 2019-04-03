@@ -1,4 +1,4 @@
-package vicc;
+package myPolicy;
 
 import java.util.ArrayList;
 import java.util.Collections;

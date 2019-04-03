@@ -1,4 +1,4 @@
-package vicc;
+package myPolicy;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,12 +13,12 @@ import org.cloudbus.cloudsim.VmAllocationPolicy;
 /**
  * @author Mourjo Sen & Rares Damaschin
  */
-public class StaticEnergyVmAllocationPolicy extends VmAllocationPolicy {
+public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
     private Map<String, Host> vmTable;
 
-    public StaticEnergyVmAllocationPolicy(List<? extends Host> list) {
+    public BalanceVmAllocationPolicy(List<? extends Host> list) {
         super(list);
         vmTable = new HashMap<>();
     }
@@ -43,14 +43,16 @@ public class StaticEnergyVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     public boolean allocateHostForVm(Vm vm) {
-    	
+        
+    	//sort the hosts in descending order of available mips: O(n log n) {too performance-intensive?}
     	Collections.sort(getHostList(), new Comparator<Host>() {
             @Override
-            public int compare(Host h1, Host h2) {
-        		return (int)(h1.getAvailableMips() - h2.getAvailableMips());
+            public int compare(Host h1, Host h2) {	
+            	return (int)(h2.getAvailableMips() - h1.getAvailableMips());
             }
         });
     	
+    	//energy consumed increases a lot because every vm is allocated to the freest host
     	
         for (Host h : getHostList()) {
             if (h.vmCreate(vm)) {

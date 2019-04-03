@@ -1,4 +1,4 @@
-package vicc;
+package myPolicy;
 
 import org.cloudbus.cloudsim.*;
 import org.cloudbus.cloudsim.power.*;

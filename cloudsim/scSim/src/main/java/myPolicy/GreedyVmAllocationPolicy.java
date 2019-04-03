@@ -1,4 +1,4 @@
-package vicc;
+package myPolicy;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,18 +7,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.cloudbus.cloudsim.Host;
+import org.cloudbus.cloudsim.Pe;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
 /**
  * @author Mourjo Sen & Rares Damaschin
  */
-public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
+public class GreedyVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
     private Map<String, Host> vmTable;
 
-    public BalanceVmAllocationPolicy(List<? extends Host> list) {
+    public GreedyVmAllocationPolicy(List<? extends Host> list) {
         super(list);
         vmTable = new HashMap<>();
     }
@@ -43,25 +44,37 @@ public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     public boolean allocateHostForVm(Vm vm) {
-        
-    	//sort the hosts in descending order of available mips: O(n log n) {too performance-intensive?}
+    	
     	Collections.sort(getHostList(), new Comparator<Host>() {
             @Override
-            public int compare(Host h1, Host h2) {	
-            	return (int)(h2.getAvailableMips() - h1.getAvailableMips());
+            public int compare(Host h1, Host h2) {
+        		return (int)(h1.getAvailableMips() - h2.getAvailableMips());
+        		//available mips sorts according to their power model as well, we checked.
             }
         });
+
     	
-    	//energy consumed increases a lot because every vm is allocated to the freest host
-    	
-        for (Host h : getHostList()) {
-            if (h.vmCreate(vm)) {
-                //track the host
-                vmTable.put(vm.getUid(), h);
-                return true;
-            }
-        }
-        return false;
+    	for (Host h : getHostList()) {
+    		
+    		boolean suitableHost = false;
+    		for(Pe processingElem : h.getPeList())
+    		{
+    			if(vm.getMips() - 500d < processingElem.getPeProvisioner().getAvailableMips())
+    			{
+    				suitableHost = true;
+    				break;
+    			}
+    		}
+
+    		if(suitableHost)
+    		{
+    			if (h.vmCreate(vm)) {
+    				vmTable.put(vm.getUid(), h);
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
     }
 
     public void deallocateHostForVm(Vm vm,Host host) {
@@ -80,8 +93,10 @@ public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     @Override
-    public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> arg0) {
-        //Static scheduling, no migration, return null;
-        return null;
+    public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> vms) {
+    	/*
+    	 * MIGRATIONS are costly! :\
+    	 * */
+    	return null;
     }
 }

@@ -1,6 +1,6 @@
 // https://github.com/mourjo/VMScheduling
 
-package vicc;
+package myPolicy;
 
 import org.cloudbus.cloudsim.*;
 import org.cloudbus.cloudsim.core.CloudSim;

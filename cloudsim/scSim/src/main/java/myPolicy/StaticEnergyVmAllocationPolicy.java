@@ -1,22 +1,24 @@
-package vicc;
+package myPolicy;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
- * @author Fabien Hermenier
+ * @author Mourjo Sen & Rares Damaschin
  */
-public class NaiveVmAllocationPolicy extends VmAllocationPolicy {
+public class StaticEnergyVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
     private Map<String, Host> vmTable;
 
-    public NaiveVmAllocationPolicy(List<? extends Host> list) {
+    public StaticEnergyVmAllocationPolicy(List<? extends Host> list) {
         super(list);
         vmTable = new HashMap<>();
     }
@@ -41,7 +43,15 @@ public class NaiveVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     public boolean allocateHostForVm(Vm vm) {
-        //First fit algorithm, run on the first suitable node
+    	
+    	Collections.sort(getHostList(), new Comparator<Host>() {
+            @Override
+            public int compare(Host h1, Host h2) {
+        		return (int)(h1.getAvailableMips() - h2.getAvailableMips());
+            }
+        });
+    	
+    	
         for (Host h : getHostList()) {
             if (h.vmCreate(vm)) {
                 //track the host

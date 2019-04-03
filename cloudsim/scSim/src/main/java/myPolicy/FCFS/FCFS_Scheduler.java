@@ -1,4 +1,4 @@
-package FCFS;
+package myPolicy.FCFS;
 
 
 import org.cloudbus.cloudsim.*;
