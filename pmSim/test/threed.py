@@ -4,11 +4,6 @@
 
 
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 24 16:37:21 2015
-
-@author: Eddy_zheng
-"""
 import os, sys
 import numpy as np
 import matplotlib.pyplot as plt

@@ -4,11 +4,6 @@
 
 
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 24 16:37:21 2015
-
-@author: Eddy_zheng
-"""
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -58,4 +53,3 @@ plt.ylabel("Y")
 ax.scatter(x=x_data, y=y_data, c='r')
 plt.legend("X1")
 plt.show()
-

@@ -2,6 +2,7 @@
 
 # Created by Neil on 2019/1/7.
 
+import os, sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,7 +13,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 
 # 通过read_csv来读取我们的目的数据集
-adv_data = pd.read_csv("D:\prj\py\py37\Sim\linear_regression\sim.csv")
+path = str(os.path.abspath('..'))
+adv_data = pd.read_csv(path + "\\dat\\sysUtilization2.csv")
 # 清洗不需要的数据
 new_adv_data = adv_data.iloc[:, 1:]
 # 得到我们所需要的数据集且查看其前几列以及数据形状
