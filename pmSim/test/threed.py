@@ -30,7 +30,7 @@ from sklearn.model_selection import train_test_split
 PLT_FIGURE = plt.figure(figsize=(12, 9))
 
 path = str(os.path.abspath('..'))
-data = pd.read_csv(path + "\\dat\\sysUtilization2.csv")
+data = pd.read_csv(path + "//dat//sysUtilization2.csv")
 
 x = data.mem
 y = data.cpu

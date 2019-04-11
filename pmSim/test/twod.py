@@ -4,6 +4,7 @@
 
 
 # -*- coding: utf-8 -*-
+import os, sys
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -26,8 +27,8 @@ from sklearn.model_selection import train_test_split
 # ax.set_ylabel('Y')
 # ax.set_xlabel('X')
 # plt.show()
-
-data = pd.read_csv("D:\prj\py\py37\Sim\dat\\sysUtilization2.csv")
+path = str(os.path.abspath('..'))
+data = pd.read_csv(path + "//dat//sysUtilization2.csv")
 x_data = data.cpu
 y_data = data.power
 

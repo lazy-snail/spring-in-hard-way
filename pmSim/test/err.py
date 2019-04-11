@@ -11,7 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 path = str(os.path.abspath('..'))
-data = pd.read_csv(path + "\\dat\\err1.csv")
+data = pd.read_csv(path + "//dat//err1.csv")
 x_data = data.err
 
 # x = np.linspace(0, 1, 500)
