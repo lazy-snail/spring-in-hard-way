@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class VmAllocationPolicyFactory {
 
-    VmAllocationPolicy make(String id, List<PowerHost> hosts) {
+    public VmAllocationPolicy make(String id, List<PowerHost> hosts) {
         switch (id) {
             case "naive":
                 return new NaiveVmAllocationPolicy(hosts);
