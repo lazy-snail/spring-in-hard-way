@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examples.netbeans.Cloudlet_Scheduler_Time_Shared;
 
 import java.util.ArrayList;
@@ -15,10 +10,6 @@ import org.cloudbus.cloudsim.Consts;
 import org.cloudbus.cloudsim.ResCloudlet;
 import org.cloudbus.cloudsim.core.CloudSim;
 
-/**
- *
- * @author Tamojit9
- */
 class ResCloudletComparator implements Comparator<ResCloudlet>{
 
     @Override

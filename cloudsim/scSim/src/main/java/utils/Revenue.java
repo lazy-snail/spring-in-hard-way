@@ -5,13 +5,6 @@ import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmStateHistoryEntry;
 import org.cloudbus.cloudsim.power.PowerDatacenter;
 
-/**
- * Compute the revenue of the provider after 1 day of exercise.
- * The revenue is computed based on the energy consumption and the associated contract, the Vm hourly costs and
- * the SLA violations.
- *
- * @author Fabien Hermenier
- */
 public class Revenue {
 
     private int[] subscriptions = {42, 48, 54, 60, 66, 72, 78, 84, 90, 96, 102, 108, 120, 132, 144, 156, 168, 180, 192, 204, 216, 228, 240};

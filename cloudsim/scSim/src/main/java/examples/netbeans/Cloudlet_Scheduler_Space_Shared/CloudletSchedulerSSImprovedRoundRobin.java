@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examples.netbeans.Cloudlet_Scheduler_Space_Shared;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Consts;
 import org.cloudbus.cloudsim.ResCloudlet;
 import org.cloudbus.cloudsim.core.CloudSim;
 
-/**
- *
- * @author Tamojit9
- */
 public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
 
     /**
@@ -71,8 +63,8 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
      * scheduler.
      *
      * @param currentTime current simulation time
-     * @param mipsShare array with MIPS share of each processor available to the
-     * scheduler
+     * @param mipsShare   array with MIPS share of each processor available to the
+     *                    scheduler
      * @return time predicted completion time of the earliest finishing
      * cloudlet, or 0 if there is no next events
      * @pre currentTime >= 0
@@ -85,7 +77,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
         double timeSpan = currentTime - getPreviousTime(); // time since last update
         double capacity = 0.0;
         int cpus = 0;
-        if(TIME_QUANTA_SIZE == 0) {
+        if (TIME_QUANTA_SIZE == 0) {
             TIME_QUANTA_SIZE = timeSpan;
         }
         for (Double mips : mipsShare) { // count the CPUs available to the VMM
@@ -98,7 +90,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
         capacity /= cpus; // average capacity of each cpu
         // each machine in the exec list has the same amount of cpu
         double no_of_quantas = Math.ceil(timeSpan * 1.0 / TIME_QUANTA_SIZE);
-       // timeSpan = TIME_QUANTA_SIZE * no_of_quantas;
+        // timeSpan = TIME_QUANTA_SIZE * no_of_quantas;
         JOptionPane.showMessageDialog(null, this.getTotalUtilizationOfCpu(timeSpan) + " ");
         for (ResCloudlet rcl : getCloudletExecList()) {
             rcl.updateCloudletFinishedSoFar((long) (capacity * timeSpan * rcl.getNumberOfPes() * Consts.MILLION));
@@ -149,7 +141,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
         }
         return 0;
     }
-    
+
     /**
      * Cancels execution of a cloudlet.
      *
@@ -356,9 +348,9 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Receives an cloudlet to be executed in the VM managed by this scheduler.
      *
-     * @param cloudlet the submited cloudlet
+     * @param cloudlet         the submited cloudlet
      * @param fileTransferTime time required to move the required files from the
-     * SAN to the VM
+     *                         SAN to the VM
      * @return expected finish time of this cloudlet, or 0 if it is in the
      * waiting queue
      * @pre gl != null
@@ -395,7 +387,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
         currentCpus = cpus;
         capacity /= cpus;
 
-		// use the current capacity to estimate the extra amount of
+        // use the current capacity to estimate the extra amount of
         // time to file transferring. It must be added to the cloudlet length
         double extraSize = capacity * fileTransferTime;
         long length = cloudlet.getCloudletLength();
@@ -524,14 +516,14 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
      * @return the cloudlet waiting list
      */
     @SuppressWarnings("unchecked")
-    public  <T extends ResCloudlet> List<T> getCloudletWaitingList() {
+    public <T extends ResCloudlet> List<T> getCloudletWaitingList() {
         return (List<T>) cloudletWaitingList;
     }
 
     /**
      * Cloudlet waiting list.
      *
-     * @param <T> the generic type
+     * @param <T>                 the generic type
      * @param cloudletWaitingList the cloudlet waiting list
      */
     protected <T extends ResCloudlet> void cloudletWaitingList(List<T> cloudletWaitingList) {
@@ -552,7 +544,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Sets the cloudlet exec list.
      *
-     * @param <T> the generic type
+     * @param <T>              the generic type
      * @param cloudletExecList the new cloudlet exec list
      */
     protected <T extends ResCloudlet> void setCloudletExecList(List<T> cloudletExecList) {
@@ -573,7 +565,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Sets the cloudlet paused list.
      *
-     * @param <T> the generic type
+     * @param <T>                the generic type
      * @param cloudletPausedList the new cloudlet paused list
      */
     protected <T extends ResCloudlet> void setCloudletPausedList(List<T> cloudletPausedList) {
@@ -594,7 +586,7 @@ public class CloudletSchedulerSSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Sets the cloudlet finished list.
      *
-     * @param <T> the generic type
+     * @param <T>                  the generic type
      * @param cloudletFinishedList the new cloudlet finished list
      */
     protected <T extends ResCloudlet> void setCloudletFinishedList(List<T> cloudletFinishedList) {

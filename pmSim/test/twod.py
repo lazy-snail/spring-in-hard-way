@@ -3,7 +3,6 @@
 # Created by Neil on 2019/1/9.
 
 
-# -*- coding: utf-8 -*-
 import os, sys
 import numpy as np
 import matplotlib.pyplot as plt

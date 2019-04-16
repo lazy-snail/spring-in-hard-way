@@ -9,7 +9,6 @@ import org.cloudbus.cloudsim.Vm;;
 
 /**
  * VmsCreator Creates VM Lists as per the User Requirements.
- * @author Linda J
  *
  */
 public class VmsCreator {

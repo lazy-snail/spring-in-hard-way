@@ -9,7 +9,6 @@ import org.cloudbus.cloudsim.Vm;
 /**
  * A Broker that schedules Tasks to the VMs 
  * as per FCFS Scheduling Policy
- * @author Linda J
  *
  */
 public class MinminBroker extends DatacenterBroker {

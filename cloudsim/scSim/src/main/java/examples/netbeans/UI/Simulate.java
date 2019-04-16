@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examples.netbeans.UI;
 
 import java.text.DecimalFormat;
@@ -10,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Datacenter;
@@ -28,10 +24,6 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.provisioners.BwProvisioner;
 import org.cloudbus.cloudsim.provisioners.RamProvisioner;
 
-/**
- *
- * @author Tamojit9
- */
 public class Simulate {
 
     static List<Cloudlet> cloudlets = new ArrayList<>();
@@ -91,7 +83,7 @@ public class Simulate {
 
     static void addVm(int vmid, int mips, int size, int ram, int bw, int pesNumber, CloudletScheduler cs) {
 
-        if(broker == null) {
+        if (broker == null) {
             broker = createBroker();
         }
         String vmm = "Xen"; // VMM name
@@ -104,7 +96,6 @@ public class Simulate {
      * Creates the datacenter.
      *
      * @param name the name
-     *
      * @return the datacenter
      */
     private static Datacenter createDatacenter(String name) {
@@ -123,24 +114,24 @@ public class Simulate {
 
         return datacenter;
     }
-    
+
     /**
-	 * Creates the broker.
-	 *
-	 * @return the datacenter broker
-	 */
+     * Creates the broker.
+     *
+     * @return the datacenter broker
+     */
     private static DatacenterBroker createBroker() {
-		try {
-                        int num_user = 1; // number of cloud users
-			Calendar calendar = Calendar.getInstance();
-			boolean trace_flag = false; // mean trace events
-			// Initialize the CloudSim library
-			CloudSim.init(num_user, calendar, trace_flag);
-			return new DatacenterBroker("Broker");
-		} catch (Exception e) {
-			return null;
-		}
-	}
+        try {
+            int num_user = 1; // number of cloud users
+            Calendar calendar = Calendar.getInstance();
+            boolean trace_flag = false; // mean trace events
+            // Initialize the CloudSim library
+            CloudSim.init(num_user, calendar, trace_flag);
+            return new DatacenterBroker("Broker");
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * Prints the Cloudlet objects.
@@ -182,7 +173,7 @@ public class Simulate {
         Log.printLine("Starting CloudSimExample1...");
 
         try {
-			// First step: Initialize the CloudSim package. It should be called
+            // First step: Initialize the CloudSim package. It should be called
             // before creating any entities.
             int num_user = 1; // number of cloud users
             Calendar calendar = Calendar.getInstance();
@@ -191,7 +182,7 @@ public class Simulate {
             // Initialize the CloudSim library
             CloudSim.init(num_user, calendar, trace_flag);
 
-			// Second step: Create Datacenters
+            // Second step: Create Datacenters
             // Datacenters are the resource providers in CloudSim. We need at
             // list one of them to run a CloudSim simulation
             Datacenter datacenter0 = createDatacenter("Datacenter_0");

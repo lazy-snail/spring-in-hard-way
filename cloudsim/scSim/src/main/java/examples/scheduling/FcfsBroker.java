@@ -11,7 +11,6 @@ import org.cloudbus.cloudsim.core.SimEvent;
 /**
  * A Broker that schedules Tasks to the VMs 
  * as per FCFS Scheduling Policy
- * @author Linda J
  *
  */
 public class FcfsBroker extends DatacenterBroker {

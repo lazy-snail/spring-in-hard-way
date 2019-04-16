@@ -9,9 +9,6 @@ import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
-/**
- * @author Mourjo Sen & Rares Damaschin
- */
 public class AntiAffinityVmAllocationPolicy extends VmAllocationPolicy {
 
     private Map<String, Host> vmTable;
@@ -31,81 +28,66 @@ public class AntiAffinityVmAllocationPolicy extends VmAllocationPolicy {
         return this.vmTable.get(Vm.getUid(userId, vmId));
     }
 
-    public boolean allocateHostForVm(Vm vm, Host host) 
-    {
-    	int vmClass = vm.getId()/100;
-    	if(affinityMap.containsKey(vmClass))
-    	{
-    		
-    		if (affinityMap.get(vmClass).contains(host) && host.vmCreate(vm)) 
-    		{
-				affinityMap.get(vm.getId()/100).remove(host);
-				vmTable.put(vm.getUid(), host);
-				return true;
-			}
-    	}
-    	else
-    	{
-    		if (host.vmCreate(vm)) 
-    		{
-    			List<Host> eligibleHosts = new LinkedList<Host>();
-            	eligibleHosts.addAll(getHostList());
-            	eligibleHosts.remove(host);
-            	affinityMap.put(vmClass, eligibleHosts);
+    public boolean allocateHostForVm(Vm vm, Host host) {
+        int vmClass = vm.getId() / 100;
+        if (affinityMap.containsKey(vmClass)) {
+
+            if (affinityMap.get(vmClass).contains(host) && host.vmCreate(vm)) {
+                affinityMap.get(vm.getId() / 100).remove(host);
                 vmTable.put(vm.getUid(), host);
                 return true;
-    		}
-    	}
-    	
+            }
+        } else {
+            if (host.vmCreate(vm)) {
+                List<Host> eligibleHosts = new LinkedList<Host>();
+                eligibleHosts.addAll(getHostList());
+                eligibleHosts.remove(host);
+                affinityMap.put(vmClass, eligibleHosts);
+                vmTable.put(vm.getUid(), host);
+                return true;
+            }
+        }
+
         return false;
     }
 
     public boolean allocateHostForVm(Vm vm) {
-    	
-    	int vmID = vm.getId();
-    	if(affinityMap.containsKey(vmID/100))
-    	{
-    		//check all eligible hosts for the class
-    		for (Host h : affinityMap.get(vmID/100)) 
-    		{
-    			if (h.vmCreate(vm))
-    			{
-    				affinityMap.get(vmID/100).remove(h);
-    				vmTable.put(vm.getUid(), h);
-    				return true;
-    			}
-    		}
-    	}
-    	else
-    	{
-    		for (Host h : getHostList()) 
-    		{
-                if (h.vmCreate(vm)) 
-                {
-                	List<Host> eligibleHosts = new LinkedList<Host>();
-                	eligibleHosts.addAll(getHostList());
-                	eligibleHosts.remove(h);
-                	affinityMap.put(vmID/100, eligibleHosts);
+
+        int vmID = vm.getId();
+        if (affinityMap.containsKey(vmID / 100)) {
+            //check all eligible hosts for the class
+            for (Host h : affinityMap.get(vmID / 100)) {
+                if (h.vmCreate(vm)) {
+                    affinityMap.get(vmID / 100).remove(h);
                     vmTable.put(vm.getUid(), h);
                     return true;
                 }
             }
-    	}
-    	return false;
+        } else {
+            for (Host h : getHostList()) {
+                if (h.vmCreate(vm)) {
+                    List<Host> eligibleHosts = new LinkedList<Host>();
+                    eligibleHosts.addAll(getHostList());
+                    eligibleHosts.remove(h);
+                    affinityMap.put(vmID / 100, eligibleHosts);
+                    vmTable.put(vm.getUid(), h);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public void deallocateHostForVm(Vm vm, Host host) 
-    {
-    	affinityMap.get(vm.getId()/100).add(host);
+    public void deallocateHostForVm(Vm vm, Host host) {
+        affinityMap.get(vm.getId() / 100).add(host);
         vmTable.remove(vm.getUid());
         host.vmDestroy(vm);
     }
 
     @Override
-    public void deallocateHostForVm(Vm v) 
-    {
+    public void deallocateHostForVm(Vm v) {
         //get the host and remove the vm
-    	affinityMap.get(v.getId()/100).add(v.getHost());
+        affinityMap.get(v.getId() / 100).add(v.getHost());
         vmTable.get(v.getUid()).vmDestroy(v);
     }
 

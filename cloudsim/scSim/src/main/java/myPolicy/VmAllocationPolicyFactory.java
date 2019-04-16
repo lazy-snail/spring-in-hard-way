@@ -5,9 +5,6 @@ import org.cloudbus.cloudsim.power.PowerHost;
 
 import java.util.List;
 
-/**
- * @author Fabien Hermenier
- */
 public class VmAllocationPolicyFactory {
 
     public VmAllocationPolicy make(String id, List<PowerHost> hosts) {

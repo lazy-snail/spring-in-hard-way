@@ -3,10 +3,6 @@
 # Created by Neil on 2019/1/7.
 
 
-# Authors: Jan Hendrik Metzen <jhm@informatik.uni-bremen.de>
-# License: BSD 3 clause
-
-
 from __future__ import division
 import time
 

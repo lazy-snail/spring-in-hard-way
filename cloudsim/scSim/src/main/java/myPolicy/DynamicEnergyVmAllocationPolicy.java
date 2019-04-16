@@ -13,9 +13,6 @@ import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
-/**
- * @author Mourjo Sen & Rares Damaschin
- */
 public class DynamicEnergyVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
@@ -46,15 +43,15 @@ public class DynamicEnergyVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     public boolean allocateHostForVm(Vm vm) {
-    	
-    	Collections.sort(getHostList(), new Comparator<Host>() {
+
+        Collections.sort(getHostList(), new Comparator<Host>() {
             @Override
             public int compare(Host h1, Host h2) {
-        		return (int)(h1.getAvailableMips() - h2.getAvailableMips());
+                return (int) (h1.getAvailableMips() - h2.getAvailableMips());
             }
         });
-    	
-    	
+
+
         for (Host h : getHostList()) {
             if (h.vmCreate(vm)) {
                 //track the host
@@ -65,7 +62,7 @@ public class DynamicEnergyVmAllocationPolicy extends VmAllocationPolicy {
         return false;
     }
 
-    public void deallocateHostForVm(Vm vm,Host host) {
+    public void deallocateHostForVm(Vm vm, Host host) {
         vmTable.remove(vm.getUid());
         host.vmDestroy(vm);
     }
@@ -82,42 +79,39 @@ public class DynamicEnergyVmAllocationPolicy extends VmAllocationPolicy {
 
     @Override
     public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> vms) {
-    	
-    	List<Map<String, Object>> map = new ArrayList<Map<String, Object>>();
-    	
-    	Set<Host> morePowerfulHosts = new HashSet<Host>();
-    	List<Vm> unAllocatedVMs = new ArrayList<Vm>();
-    	unAllocatedVMs.addAll(vms);
-    	
-    	for(Vm v : vms)
-    		morePowerfulHosts.add(v.getHost());
-    	
-    	Set<Host> lessPowerfulHosts = new HashSet<Host>();
-    	lessPowerfulHosts.addAll(getHostList());
-    	lessPowerfulHosts.removeAll(morePowerfulHosts);
-    	
-    	Map<Host, Double> hostAvailableMips = new HashMap<Host, Double>();
-    	for(Host h : lessPowerfulHosts)
-    		hostAvailableMips.put(h, h.getAvailableMips());
-    	
-    	for(Host h : lessPowerfulHosts)
-    	{
-    		List<Vm> removeVMs = new ArrayList<Vm>();
-    		for(Vm v : unAllocatedVMs)
-    		{
-    			if(hostAvailableMips.get(h) > v.getMips())
-    			{
-    				Map<String, Object> m1 = new HashMap<String, Object>();
-    				m1.put("vm", v);
-    				m1.put("host", h);
-    				map.add(m1);
-    				removeVMs.add(v);
-    				hostAvailableMips.put(h, hostAvailableMips.get(h) - v.getMips());
-    			}
-    			
-    		}
-    		unAllocatedVMs.removeAll(removeVMs);
-    	}
-    	return map;
+
+        List<Map<String, Object>> map = new ArrayList<Map<String, Object>>();
+
+        Set<Host> morePowerfulHosts = new HashSet<Host>();
+        List<Vm> unAllocatedVMs = new ArrayList<Vm>();
+        unAllocatedVMs.addAll(vms);
+
+        for (Vm v : vms)
+            morePowerfulHosts.add(v.getHost());
+
+        Set<Host> lessPowerfulHosts = new HashSet<Host>();
+        lessPowerfulHosts.addAll(getHostList());
+        lessPowerfulHosts.removeAll(morePowerfulHosts);
+
+        Map<Host, Double> hostAvailableMips = new HashMap<Host, Double>();
+        for (Host h : lessPowerfulHosts)
+            hostAvailableMips.put(h, h.getAvailableMips());
+
+        for (Host h : lessPowerfulHosts) {
+            List<Vm> removeVMs = new ArrayList<Vm>();
+            for (Vm v : unAllocatedVMs) {
+                if (hostAvailableMips.get(h) > v.getMips()) {
+                    Map<String, Object> m1 = new HashMap<String, Object>();
+                    m1.put("vm", v);
+                    m1.put("host", h);
+                    map.add(m1);
+                    removeVMs.add(v);
+                    hostAvailableMips.put(h, hostAvailableMips.get(h) - v.getMips());
+                }
+
+            }
+            unAllocatedVMs.removeAll(removeVMs);
+        }
+        return map;
     }
 }

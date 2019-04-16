@@ -9,9 +9,6 @@ import org.cloudbus.cloudsim.Pe;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
-/**
- * @author Mourjo Sen & Rares Damaschin
- */
 public class NoViolationsVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
@@ -43,29 +40,26 @@ public class NoViolationsVmAllocationPolicy extends VmAllocationPolicy {
 
     public boolean allocateHostForVm(Vm vm) {
 
-    	for (Host h : getHostList()) {
-    		boolean suitableHost = false;
-    		for(Pe processingElem : h.getPeList())
-    		{
-    			if(vm.getMips() < processingElem.getPeProvisioner().getAvailableMips())
-    			{
-    				suitableHost = true;
-    				break;
-    			}
-    		}
+        for (Host h : getHostList()) {
+            boolean suitableHost = false;
+            for (Pe processingElem : h.getPeList()) {
+                if (vm.getMips() < processingElem.getPeProvisioner().getAvailableMips()) {
+                    suitableHost = true;
+                    break;
+                }
+            }
 
-    		if(suitableHost)
-    		{
-    			if (h.vmCreate(vm)) {
-    				vmTable.put(vm.getUid(), h);
-    				return true;
-    			}
-    		}
-    	}
-    	return false;
+            if (suitableHost) {
+                if (h.vmCreate(vm)) {
+                    vmTable.put(vm.getUid(), h);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public void deallocateHostForVm(Vm vm,Host host) {
+    public void deallocateHostForVm(Vm vm, Host host) {
         vmTable.remove(vm.getUid());
         host.vmDestroy(vm);
     }

@@ -8,9 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author Fabien Hermenier
- */
 public class NaiveVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
@@ -52,7 +49,7 @@ public class NaiveVmAllocationPolicy extends VmAllocationPolicy {
         return false;
     }
 
-    public void deallocateHostForVm(Vm vm,Host host) {
+    public void deallocateHostForVm(Vm vm, Host host) {
         vmTable.remove(vm.getUid());
         host.vmDestroy(vm);
     }

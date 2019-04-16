@@ -21,8 +21,6 @@ import java.util.*;
  * It just initialises the simulator, create the right scheduling algorithm and runs the simulation.
  * <p>
  * Nothing to edit on your side.
- *
- * @author Fabien Hermenier
  */
 public class Main {
 

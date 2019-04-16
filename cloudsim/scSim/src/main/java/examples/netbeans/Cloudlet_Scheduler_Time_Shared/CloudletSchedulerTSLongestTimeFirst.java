@@ -1,31 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examples.netbeans.Cloudlet_Scheduler_Time_Shared;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Consts;
 import org.cloudbus.cloudsim.ResCloudlet;
 import org.cloudbus.cloudsim.core.CloudSim;
 
-/**
- *
- * @author Tamojit9
- */
-class ResCloudletComparator12 implements Comparator<ResCloudlet>{
+class ResCloudletComparator12 implements Comparator<ResCloudlet> {
 
     @Override
     public int compare(ResCloudlet t, ResCloudlet t1) {
         return t.getCloudletLength() >= t1.getCloudletLength() ? -1 : 1;
     }
-    
+
 }
 
 public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
@@ -46,13 +38,13 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
     private List<? extends ResCloudlet> cloudletFinishedList;
 
     private boolean sortedExec = false;
-    
+
     /**
      * The current cp us.
      */
     protected int currentCPUs;
     private double TIME_QUANTA_SIZE = 5;
-	
+
     /**
      * Creates a new CloudletSchedulerTimeShared object. This method must be
      * invoked before starting the actual simulation.
@@ -73,8 +65,8 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
      * scheduler.
      *
      * @param currentTime current simulation time
-     * @param mipsShare array with MIPS share of each processor available to the
-     * scheduler
+     * @param mipsShare   array with MIPS share of each processor available to the
+     *                    scheduler
      * @return time predicted completion time of the earliest finishing
      * cloudlet, or 0 if there is no next events
      * @pre currentTime >= 0
@@ -98,9 +90,9 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
         double nextEvent = Double.MAX_VALUE;
         long instructions_in_one_quanta = (long) (getCapacity(mipsShare) * TIME_QUANTA_SIZE * Consts.MILLION);
         List<ResCloudlet> toRemove = new ArrayList<>();
-        if(!sortedExec) {
-                    Collections.sort(getCloudletExecList(), new ResCloudletComparator12());
-                    sortedExec = true;
+        if (!sortedExec) {
+            Collections.sort(getCloudletExecList(), new ResCloudletComparator12());
+            sortedExec = true;
         }
         for (ResCloudlet rcl : getCloudletExecList()) {
             long remainingLength = rcl.getRemainingCloudletLength();
@@ -300,7 +292,7 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
             rgl.setCloudletStatus(Cloudlet.INEXEC);
             getCloudletExecList().add(rgl);
 
-			// calculate the expected time for cloudlet completion
+            // calculate the expected time for cloudlet completion
             // first: how many PEs do we have?
             double remainingLength = rgl.getRemainingCloudletLength();
             double estimatedFinishTime = CloudSim.clock()
@@ -315,9 +307,9 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
     /**
      * Receives an cloudlet to be executed in the VM managed by this scheduler.
      *
-     * @param cloudlet the submited cloudlet
+     * @param cloudlet         the submited cloudlet
      * @param fileTransferTime time required to move the required files from the
-     * SAN to the VM
+     *                         SAN to the VM
      * @return expected finish time of this cloudlet
      * @pre gl != null
      * @post $none
@@ -458,7 +450,7 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
     /**
      * Sets the cloudlet exec list.
      *
-     * @param <T> the generic type
+     * @param <T>              the generic type
      * @param cloudletExecList the new cloudlet exec list
      */
     protected <T extends ResCloudlet> void setCloudletExecList(List<T> cloudletExecList) {
@@ -479,7 +471,7 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
     /**
      * Sets the cloudlet paused list.
      *
-     * @param <T> the generic type
+     * @param <T>                the generic type
      * @param cloudletPausedList the new cloudlet paused list
      */
     protected <T extends ResCloudlet> void setCloudletPausedList(List<T> cloudletPausedList) {
@@ -500,7 +492,7 @@ public class CloudletSchedulerTSLongestTimeFirst extends CloudletScheduler {
     /**
      * Sets the cloudlet finished list.
      *
-     * @param <T> the generic type
+     * @param <T>                  the generic type
      * @param cloudletFinishedList the new cloudlet finished list
      */
     protected <T extends ResCloudlet> void setCloudletFinishedList(List<T> cloudletFinishedList) {

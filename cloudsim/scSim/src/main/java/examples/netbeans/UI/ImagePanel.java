@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package examples.netbeans.UI;
 
 import java.awt.Graphics;
@@ -13,9 +7,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-/**
- * @author Tamojit9
- */
 public class ImagePanel extends JPanel {
     private static final long serialVersionUID = 1L;
 

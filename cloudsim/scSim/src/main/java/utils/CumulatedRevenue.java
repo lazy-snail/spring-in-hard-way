@@ -3,9 +3,6 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Fabien Hermenier
- */
 public class CumulatedRevenue extends Revenue {
 
     private List<Revenue> revenues;

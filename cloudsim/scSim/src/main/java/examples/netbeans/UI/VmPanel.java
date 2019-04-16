@@ -1,21 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package examples.netbeans.UI;
 
 import examples.netbeans.Cloudlet_Scheduler_Space_Shared.CloudletSchedulerSSImprovedRoundRobin;
@@ -40,9 +22,6 @@ import javax.swing.JComboBox;
 
 import org.cloudbus.cloudsim.CloudletScheduler;
 
-/**
- * @author Tamojit9
- */
 public class VmPanel extends javax.swing.JPanel {
 
     Map<String, CloudletScheduler> mapping = new HashMap<>();

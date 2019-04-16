@@ -3,12 +3,6 @@
 # Created by Neil on 2019/1/7.
 
 
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Apr 05 19:52:39 2018
-@author: Alvin AI
-"""
-
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression

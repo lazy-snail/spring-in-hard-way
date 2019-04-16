@@ -10,9 +10,6 @@ import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
-/**
- * @author Mourjo Sen & Rares Damaschin
- */
 public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
@@ -43,17 +40,17 @@ public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     public boolean allocateHostForVm(Vm vm) {
-        
-    	//sort the hosts in descending order of available mips: O(n log n) {too performance-intensive?}
-    	Collections.sort(getHostList(), new Comparator<Host>() {
+
+        //sort the hosts in descending order of available mips: O(n log n) {too performance-intensive?}
+        Collections.sort(getHostList(), new Comparator<Host>() {
             @Override
-            public int compare(Host h1, Host h2) {	
-            	return (int)(h2.getAvailableMips() - h1.getAvailableMips());
+            public int compare(Host h1, Host h2) {
+                return (int) (h2.getAvailableMips() - h1.getAvailableMips());
             }
         });
-    	
-    	//energy consumed increases a lot because every vm is allocated to the freest host
-    	
+
+        //energy consumed increases a lot because every vm is allocated to the freest host
+
         for (Host h : getHostList()) {
             if (h.vmCreate(vm)) {
                 //track the host
@@ -64,7 +61,7 @@ public class BalanceVmAllocationPolicy extends VmAllocationPolicy {
         return false;
     }
 
-    public void deallocateHostForVm(Vm vm,Host host) {
+    public void deallocateHostForVm(Vm vm, Host host) {
         vmTable.remove(vm.getUid());
         host.vmDestroy(vm);
     }

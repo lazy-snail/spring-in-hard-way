@@ -20,8 +20,6 @@ import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
  * FCFS Task scheduling
- *
- * @author Linda J
  */
 public class FCFS {
 

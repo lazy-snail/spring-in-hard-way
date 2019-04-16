@@ -11,9 +11,6 @@ import org.cloudbus.cloudsim.Pe;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 
-/**
- * @author Mourjo Sen & Rares Damaschin
- */
 public class GreedyVmAllocationPolicy extends VmAllocationPolicy {
 
     //To track the Host for each Vm. The string is the unique Vm identifier, composed by its id and its userId
@@ -44,40 +41,37 @@ public class GreedyVmAllocationPolicy extends VmAllocationPolicy {
     }
 
     public boolean allocateHostForVm(Vm vm) {
-    	
-    	Collections.sort(getHostList(), new Comparator<Host>() {
+
+        Collections.sort(getHostList(), new Comparator<Host>() {
             @Override
             public int compare(Host h1, Host h2) {
-        		return (int)(h1.getAvailableMips() - h2.getAvailableMips());
-        		//available mips sorts according to their power model as well, we checked.
+                return (int) (h1.getAvailableMips() - h2.getAvailableMips());
+                //available mips sorts according to their power model as well, we checked.
             }
         });
 
-    	
-    	for (Host h : getHostList()) {
-    		
-    		boolean suitableHost = false;
-    		for(Pe processingElem : h.getPeList())
-    		{
-    			if(vm.getMips() - 500d < processingElem.getPeProvisioner().getAvailableMips())
-    			{
-    				suitableHost = true;
-    				break;
-    			}
-    		}
 
-    		if(suitableHost)
-    		{
-    			if (h.vmCreate(vm)) {
-    				vmTable.put(vm.getUid(), h);
-    				return true;
-    			}
-    		}
-    	}
-    	return false;
+        for (Host h : getHostList()) {
+
+            boolean suitableHost = false;
+            for (Pe processingElem : h.getPeList()) {
+                if (vm.getMips() - 500d < processingElem.getPeProvisioner().getAvailableMips()) {
+                    suitableHost = true;
+                    break;
+                }
+            }
+
+            if (suitableHost) {
+                if (h.vmCreate(vm)) {
+                    vmTable.put(vm.getUid(), h);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public void deallocateHostForVm(Vm vm,Host host) {
+    public void deallocateHostForVm(Vm vm, Host host) {
         vmTable.remove(vm.getUid());
         host.vmDestroy(vm);
     }
@@ -94,9 +88,9 @@ public class GreedyVmAllocationPolicy extends VmAllocationPolicy {
 
     @Override
     public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> vms) {
-    	/*
-    	 * MIGRATIONS are costly! :\
-    	 * */
-    	return null;
+        /*
+         * MIGRATIONS are costly! :\
+         * */
+        return null;
     }
 }

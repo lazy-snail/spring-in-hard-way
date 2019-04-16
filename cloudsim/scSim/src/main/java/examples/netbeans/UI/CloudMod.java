@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-// https://github.com/tamojit9/CloudSim3.0.3-modified-
-
 package examples.netbeans.UI;
 
 import java.awt.Color;
 
-/**
- * @author Tamojit9
- */
 public class CloudMod extends javax.swing.JFrame {
     private static final long serialVersionUID = 1L;
 

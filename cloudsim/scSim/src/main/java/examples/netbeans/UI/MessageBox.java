@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package examples.netbeans.UI;
 
 import java.awt.Color;
@@ -15,9 +9,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-/**
- * @author Tamojit9
- */
 public class MessageBox extends javax.swing.JFrame {
 
     public static int info = 1, warning = 2, exclamation = 3;

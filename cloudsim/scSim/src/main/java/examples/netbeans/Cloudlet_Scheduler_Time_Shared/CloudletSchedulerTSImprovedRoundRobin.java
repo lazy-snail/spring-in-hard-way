@@ -1,34 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *//*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package examples.netbeans.Cloudlet_Scheduler_Time_Shared;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Consts;
 import org.cloudbus.cloudsim.ResCloudlet;
 import org.cloudbus.cloudsim.core.CloudSim;
 
-/**
- *
- * @author Tamojit9
- */
 public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
 
     /**
@@ -76,8 +56,8 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
      * scheduler.
      *
      * @param currentTime current simulation time
-     * @param mipsShare array with MIPS share of each processor available to the
-     * scheduler
+     * @param mipsShare   array with MIPS share of each processor available to the
+     *                    scheduler
      * @return time predicted completion time of the earliest finishing
      * cloudlet, or 0 if there is no next events
      * @pre currentTime >= 0
@@ -87,8 +67,8 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
     public double updateVmProcessing(double currentTime, List<Double> mipsShare) {
         setCurrentMipsShare(mipsShare);
         double timeSpan = currentTime - getPreviousTime();
-        if(TIME_QUANTA_SIZE == 0)  TIME_QUANTA_SIZE = timeSpan;
-        int no_of_quantas = (int) Math.ceil(timeSpan*1.0/TIME_QUANTA_SIZE);
+        if (TIME_QUANTA_SIZE == 0) TIME_QUANTA_SIZE = timeSpan;
+        int no_of_quantas = (int) Math.ceil(timeSpan * 1.0 / TIME_QUANTA_SIZE);
         timeSpan = TIME_QUANTA_SIZE * no_of_quantas;
 
         for (ResCloudlet rcl : getCloudletExecList()) {
@@ -107,8 +87,8 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
         for (ResCloudlet rcl : getCloudletExecList()) {
             long remainingLength = rcl.getRemainingCloudletLength();
             if ((remainingLength == 0) ||
-                    remainingLength <= instructions_in_one_quanta*rcl.getNumberOfPes()) {// finished: remove from the list
-                if(remainingLength > 0)
+                    remainingLength <= instructions_in_one_quanta * rcl.getNumberOfPes()) {// finished: remove from the list
+                if (remainingLength > 0)
                     rcl.updateCloudletFinishedSoFar(remainingLength);
                 toRemove.add(rcl);
                 cloudletFinish(rcl);
@@ -305,7 +285,7 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
             rgl.setCloudletStatus(Cloudlet.INEXEC);
             getCloudletExecList().add(rgl);
 
-			// calculate the expected time for cloudlet completion
+            // calculate the expected time for cloudlet completion
             // first: how many PEs do we have?
             double remainingLength = rgl.getRemainingCloudletLength();
             double estimatedFinishTime = CloudSim.clock()
@@ -320,9 +300,9 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Receives an cloudlet to be executed in the VM managed by this scheduler.
      *
-     * @param cloudlet the submited cloudlet
+     * @param cloudlet         the submited cloudlet
      * @param fileTransferTime time required to move the required files from the
-     * SAN to the VM
+     *                         SAN to the VM
      * @return expected finish time of this cloudlet
      * @pre gl != null
      * @post $none
@@ -337,7 +317,7 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
 
         getCloudletExecList().add(rcl);
 
-		// use the current capacity to estimate the extra amount of
+        // use the current capacity to estimate the extra amount of
         // time to file transferring. It must be added to the cloudlet length
         double extraSize = getCapacity(getCurrentMipsShare()) * fileTransferTime;
         long length = (long) (cloudlet.getCloudletLength() + extraSize);
@@ -463,7 +443,7 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Sets the cloudlet exec list.
      *
-     * @param <T> the generic type
+     * @param <T>              the generic type
      * @param cloudletExecList the new cloudlet exec list
      */
     protected <T extends ResCloudlet> void setCloudletExecList(List<T> cloudletExecList) {
@@ -484,7 +464,7 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Sets the cloudlet paused list.
      *
-     * @param <T> the generic type
+     * @param <T>                the generic type
      * @param cloudletPausedList the new cloudlet paused list
      */
     protected <T extends ResCloudlet> void setCloudletPausedList(List<T> cloudletPausedList) {
@@ -505,7 +485,7 @@ public class CloudletSchedulerTSImprovedRoundRobin extends CloudletScheduler {
     /**
      * Sets the cloudlet finished list.
      *
-     * @param <T> the generic type
+     * @param <T>                  the generic type
      * @param cloudletFinishedList the new cloudlet finished list
      */
     protected <T extends ResCloudlet> void setCloudletFinishedList(List<T> cloudletFinishedList) {
