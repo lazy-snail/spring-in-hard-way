@@ -21,6 +21,8 @@ import java.util.*;
  * It just initialises the simulator, create the right scheduling algorithm and runs the simulation.
  * <p>
  * Nothing to edit on your side.
+ *
+ * @author Fabien Hermenier
  */
 public class Main {
 
@@ -58,7 +60,7 @@ public class Main {
         //the datacenter
         PowerDatacenter datacenter = Helper.createDatacenter("Datacenter", hosts, policy);
 
-        prepareLogging(d);
+//        prepareLogging(d);
         CloudSim.terminateSimulation(Constants.SIMULATION_LIMIT);
 
         //Here you can insert your observers
@@ -68,7 +70,14 @@ public class Main {
         double x = CloudSim.startSimulation();
 
         List<Cloudlet> newList = broker.getCloudletReceivedList();
+
         Log.printLine("Received " + newList.size() + " cloudlets");
+
+        System.out.println("___________________________________________________________________");
+        System.out.println(Helper.getSlaTimePerActiveHost(datacenter.getHostList()));
+        System.out.println(datacenter.getPower());
+        System.out.println(datacenter.getMigrationCount());
+        System.out.println("___________________________________________________________________");
 
         CloudSim.stopSimulation();
         Log.printLine("Finished");
