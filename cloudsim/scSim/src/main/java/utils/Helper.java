@@ -250,7 +250,7 @@ public class Helper {
 	 * @param hosts the hosts
 	 * @return the sla time per active host
 	 */
-	protected static double getSlaTimePerActiveHost(List<Host> hosts) {
+	public static double getSlaTimePerActiveHost(List<Host> hosts) {
 		double slaViolationTimePerHost = 0;
 		double totalTime = 0;
 
@@ -286,7 +286,7 @@ public class Helper {
 	 * @param hosts the hosts
 	 * @return the sla time per host
 	 */
-	protected static double getSlaTimePerHost(List<Host> hosts) {
+	public static double getSlaTimePerHost(List<Host> hosts) {
 		double slaViolationTimePerHost = 0;
 		double totalTime = 0;
 
@@ -320,7 +320,7 @@ public class Helper {
 	 * @param vms the vms
 	 * @return the sla metrics
 	 */
-	protected static Map<String, Double> getSlaMetrics(List<Vm> vms) {
+	public static Map<String, Double> getSlaMetrics(List<Vm> vms) {
 		Map<String, Double> metrics = new HashMap<String, Double>();
 		List<Double> slaViolation = new LinkedList<Double>();
 		double totalAllocated = 0;

@@ -60,7 +60,7 @@ public class Main {
         //the datacenter
         PowerDatacenter datacenter = Helper.createDatacenter("Datacenter", hosts, policy);
 
-//        prepareLogging(d);
+        prepareLogging(d);
         CloudSim.terminateSimulation(Constants.SIMULATION_LIMIT);
 
         //Here you can insert your observers
@@ -74,9 +74,11 @@ public class Main {
         Log.printLine("Received " + newList.size() + " cloudlets");
 
         System.out.println("___________________________________________________________________");
-        System.out.println(Helper.getSlaTimePerActiveHost(datacenter.getHostList()));
-        System.out.println(datacenter.getPower());
-        System.out.println(datacenter.getMigrationCount());
+        System.out.println("SlaTimePerActiveHost: " + Helper.getSlaTimePerActiveHost(datacenter.getHostList()));
+        System.out.println("SlaTimePerHost: " + Helper.getSlaTimePerHost(datacenter.getHostList()));
+        System.out.println("Power: " + datacenter.getPower());
+        System.out.println("MigrationCount: " + datacenter.getMigrationCount());
+        System.out.println("TimesBeforeHostShutdown: " + Helper.getTimesBeforeHostShutdown(datacenter.getHostList()));
         System.out.println("___________________________________________________________________");
 
         CloudSim.stopSimulation();
