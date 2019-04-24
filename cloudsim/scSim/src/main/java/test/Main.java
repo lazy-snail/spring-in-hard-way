@@ -73,13 +73,16 @@ public class Main {
 
         Log.printLine("Received " + newList.size() + " cloudlets");
 
+        System.out.println();
         System.out.println("___________________________________________________________________");
         System.out.println("SlaTimePerActiveHost: " + Helper.getSlaTimePerActiveHost(datacenter.getHostList()));
         System.out.println("SlaTimePerHost: " + Helper.getSlaTimePerHost(datacenter.getHostList()));
         System.out.println("Power: " + datacenter.getPower());
         System.out.println("MigrationCount: " + datacenter.getMigrationCount());
-        System.out.println("TimesBeforeHostShutdown: " + Helper.getTimesBeforeHostShutdown(datacenter.getHostList()));
+//        System.out.println("TimesBeforeHostShutdown: " + Helper.getTimesBeforeHostShutdown(datacenter.getHostList()));
+        System.out.println();
         System.out.println("___________________________________________________________________");
+        System.out.println();
 
         CloudSim.stopSimulation();
         Log.printLine("Finished");
