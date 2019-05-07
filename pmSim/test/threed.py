@@ -54,5 +54,5 @@ ax.invert_xaxis()
 ax.view_init(azim=-37.5, elev=30)
 plt.show()
 
-# plt.savefig('plot1.png', format='png')
-# plt.close()
+plt.savefig('plot1.png')
+plt.close()
