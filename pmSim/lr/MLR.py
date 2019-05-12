@@ -35,14 +35,14 @@ print(new_adv_data.describe())
 # print(new_adv_data.corr())
 #
 # 通过加入一个参数kind='reg'，seaborn可以添加一条最佳拟合直线和95%的置信带。
-sns.pairplot(new_adv_data, x_vars=['cpu', 'mem', 'disk'], y_vars='p', height=7, aspect=0.8, kind='reg')
+sns.pairplot(new_adv_data, x_vars=['cpu', 'mem'], y_vars='p', height=7, aspect=0.8, kind='reg')
 # sns.pairplot(new_adv_data, x_vars=['TV', 'radio'])
 # plt.savefig("pairplot.png")
 plt.show()
 #
-X_train, X_test, Y_train, Y_test = train_test_split(new_adv_data.iloc[:, :3], new_adv_data.p)
+X_train, X_test, Y_train, Y_test = train_test_split(new_adv_data.iloc[:, :2], new_adv_data.p)
 
-print("原始数据特征:", new_adv_data.iloc[:, :3].shape,
+print("原始数据特征:", new_adv_data.iloc[:, :2].shape,
       ",训练数据特征:", X_train.shape,
       ",测试数据特征:", X_test.shape)
 #
@@ -92,3 +92,11 @@ plt.plot(range(len(Y_pred)), Y_test, 'b', label="real")
 
 # # 显示图像
 plt.show()
+i = 0
+for idx in Y_test.index:
+      pred = Y_pred[i]
+      i += 1
+      real = Y_test[idx]
+      ab = (pred - real) / real * 100
+      # print("%.2f" % ab)
+      print("%.2f" % pred)

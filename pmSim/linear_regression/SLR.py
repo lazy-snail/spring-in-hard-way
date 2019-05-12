@@ -25,12 +25,12 @@ new_adv_data.boxplot()
 # plt.savefig("boxplot.png")
 plt.show()
 
-sns.pairplot(new_adv_data, x_vars=['cpu', 'mem', 'disk_io(Mbps)', 'net_io(Mbps)'], y_vars='power', height=7,
+sns.pairplot(new_adv_data, x_vars=['cpu', 'mem', ], y_vars='power', height=7,
              aspect=0.8, kind='reg')
 plt.show()
 
-X_train, X_test, Y_train, Y_test = train_test_split(new_adv_data.iloc[:, 1:5], new_adv_data.power)
-print("原始数据特征:", new_adv_data.iloc[:, 1:5].shape,
+X_train, X_test, Y_train, Y_test = train_test_split(new_adv_data.iloc[:, 1:2], new_adv_data.power)
+print("原始数据特征:", new_adv_data.iloc[:, 1:2].shape,
       ",训练数据特征:", X_train.shape,
       ",测试数据特征:", X_test.shape)
 #
@@ -70,3 +70,11 @@ Y_pred = model.predict(X_test)
 plt.plot(range(len(Y_pred)), Y_pred, 'r', label="predict")
 plt.plot(range(len(Y_pred)), Y_test, 'b', label="real")
 plt.show()
+i = 0
+for idx in Y_test.index:
+    pred = Y_pred[i]
+    i += 1
+    real = Y_test[idx]
+    ab = (pred - real) / real * 100
+    # print("%.2f" % ab)
+    print("%.2f" % pred)

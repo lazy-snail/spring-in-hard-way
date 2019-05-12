@@ -64,6 +64,14 @@ def lasso_regression_test(datapath):
     plt.show()
 
 
+    i = 0
+    for idx in Y_test.index:
+        pred = Y_pred[i]
+        i += 1
+        real = Y_test[idx]
+        ab = (pred - real) / real * 100
+        print("%.2f" % pred)
+
 path = str(os.path.abspath('..'))
-dp = path + "\\dat\\test.csv"
+dp = path + "\\dat\\sysUtilization1.csv"
 lasso_regression_test(dp)

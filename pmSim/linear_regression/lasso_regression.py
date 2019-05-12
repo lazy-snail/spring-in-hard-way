@@ -14,7 +14,7 @@ def lasso_regression_test(datapath):
     # 加载数据集，默认训练：测试数据比例为 4：1
     X_train, X_test, Y_train, Y_test = datautils.load_train_test_set(datapath)
     # 选择套索回归模型
-    regr = linear_model.Lasso()
+    regr = linear_model.LinearRegression(normalize=True, fit_intercept=True)
     # 拟合训练数据
     regr.fit(X_train, Y_train)
 
@@ -54,8 +54,8 @@ def lasso_regression_test(datapath):
         i += 1
         real = Y_test[idx]
         ab = (pred - real) / real * 100
-        print("%.2f" % ab)
-
+        # print("%.2f" % ab)
+        print("%.2f" % pred)
 
 path = str(os.path.abspath('..'))
 dp = path + "\\dat\\sysUtilization1.csv"
