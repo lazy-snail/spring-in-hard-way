@@ -19,7 +19,7 @@ len = len(x_data)
 for i in range(len):
     # cpu = random.uniform(2.5, 10.1)
     # mem = random.uniform(16.7, 28.2)
-    err = random.uniform(-18, 15)
+    err = random.uniform(-20, 25)
     print("%.2f" % ((err / 100 + 1) * x_data[i]))
 
 # print(x_data)

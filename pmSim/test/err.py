@@ -9,8 +9,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 path = str(os.path.abspath('..'))
-data = pd.read_csv(path + "//dat//err2.csv")
-x_data = data.err
+data = pd.read_csv(path + "//dat//err.csv")
+x_data = data.err5
 
 # x = np.linspace(0, 1, 500)
 
