@@ -3,7 +3,7 @@
 package test;
 
 import myPolicy.Constants;
-import myPolicy.VmAllocationPolicyFactory;
+import myPolicy.PolicyFactory;
 import org.cloudbus.cloudsim.*;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.power.PowerDatacenter;
@@ -16,7 +16,10 @@ import utils.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 import static examples.power.Helper.*;
 import static utils.Helper.getSlaTimePerActiveHost;
@@ -36,7 +39,7 @@ public class Main {
 
     public static boolean doLog = true;
 
-    private static VmAllocationPolicyFactory policies = new VmAllocationPolicyFactory();
+    private static PolicyFactory policies = new PolicyFactory();
 
     private static Observers observers = new Observers();
 
