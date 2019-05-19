@@ -24,8 +24,8 @@ for i in range(len):
 
 # print(x_data)
 
-# print(y.var())
-# plt.figure(figsize=(8, 6))
-# plt.plot(y, c='b')
-# plt.axhline(0, c='black')
-# plt.show()
+print(y.var())
+plt.figure(figsize=(8, 6))
+plt.plot(y, c='b')
+plt.axhline(0, c='black')
+plt.show()

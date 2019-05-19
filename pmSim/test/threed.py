@@ -26,14 +26,14 @@ from sklearn.model_selection import train_test_split
 # ax.set_ylabel('Y')
 # ax.set_xlabel('X')
 # plt.show()
-PLT_FIGURE = plt.figure(figsize=(12, 9))
+PLT_FIGURE = plt.figure(figsize=(8, 6))
 
 path = str(os.path.abspath('..'))
 data = pd.read_csv(path + "//dat//sysUtilization2.csv")
 
 x = data.mem
 y = data.cpu
-z = data.power
+z = data.p
 
 ax = plt.subplot(111, projection='3d')  # 创建一个三维的绘图工程
 
@@ -46,9 +46,9 @@ b = np.array(z)
 color = np.arctan(b, a)
 ax.scatter(x, y, z, c=color)
 
-ax.set_xlabel('mem')
-ax.set_ylabel('cpu')
-ax.set_zlabel('power')  # 坐标轴
+ax.set_xlabel('Memory utilization')
+ax.set_ylabel('CPU utilization')
+ax.set_zlabel('Power (watt)')  # 坐标轴
 ax.invert_xaxis()
 # 改变绘制图像的视角, 即相机的位置, azim沿着z轴旋转, elev沿着y轴, 默认：azim=-37.5, elev=30
 ax.view_init(azim=-37.5, elev=30)

@@ -11,18 +11,20 @@ public class PolicyFactory {
         switch (id) {
             case "naive":
                 return new NaivePolicy(hosts);
-            case "antiAffinity":
-                return new AntiAffinityPolicy(hosts);
+            case "fcfs":
+                return new FCFSPolicy(hosts);
             case "mm":
                 return new MaxMinPolicy(hosts);
-            case "noV":
-                return new NoViolationsPolicy(hosts);
+
             case "nibp":
                 return new NIBPredictionPolicy(hosts);
             case "pamb":
                 return new PAMBanlancePolicy(hosts);
-            case "fcfs":
-                return new FCFSPolicy(hosts);
+
+            case "noV":
+                return new NoViolationsPolicy(hosts);
+            case "antiAffinity":
+                return new AntiAffinityPolicy(hosts);
         }
         throw new IllegalArgumentException("No such policy '" + id + "'");
     }

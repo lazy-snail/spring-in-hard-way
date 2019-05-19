@@ -40,28 +40,28 @@ def lasso_regression_test(datapath):
     plt.plot(range(len(Y_pred)), Y_test, 'b', label="real")
     plt.show()
 
-    alphas = np.logspace(-2, 2)
-    rhos = np.linspace(0.01, 1)
-    scores = []
-    for i in alphas:
-        for j in rhos:
-            regr = linear_model.ElasticNet(alpha=i, l1_ratio=j)
-            regr.fit(X_train, Y_train)
-            scores.append(regr.score(X_test, Y_test))
-    # 绘图
-    alphas, rhos = np.meshgrid(alphas, rhos)
-    scores = np.array(scores).reshape(alphas.shape)
-    from mpl_toolkits.mplot3d import Axes3D
-    from matplotlib import cm
-    fig = plt.figure()
-    ax = Axes3D(fig)
-    surf = ax.plot_surface(alphas, rhos, scores, rstride=1, cstride=1, cmap=cm.jet, linewidth=0, antialiased=False)
-    fig.colorbar(surf, shrink=0.5, aspect=5)
-    ax.set_title('ElasticNet')
-    ax.set_xlabel(r"$\alpha$")
-    ax.set_ylabel(r"$\rho$")
-    ax.set_zlabel("score")
-    plt.show()
+    # alphas = np.logspace(-2, 2)
+    # rhos = np.linspace(0.01, 1)
+    # scores = []
+    # for i in alphas:
+    #     for j in rhos:
+    #         regr = linear_model.ElasticNet(alpha=i, l1_ratio=j)
+    #         regr.fit(X_train, Y_train)
+    #         scores.append(regr.score(X_test, Y_test))
+    # # 绘图
+    # alphas, rhos = np.meshgrid(alphas, rhos)
+    # scores = np.array(scores).reshape(alphas.shape)
+    # from mpl_toolkits.mplot3d import Axes3D
+    # from matplotlib import cm
+    # fig = plt.figure()
+    # ax = Axes3D(fig)
+    # surf = ax.plot_surface(alphas, rhos, scores, rstride=1, cstride=1, cmap=cm.jet, linewidth=0, antialiased=False)
+    # fig.colorbar(surf, shrink=0.5, aspect=5)
+    # ax.set_title('ElasticNet')
+    # ax.set_xlabel(r"$\alpha$")
+    # ax.set_ylabel(r"$\rho$")
+    # ax.set_zlabel("score")
+    # plt.show()
 
 
     i = 0
@@ -70,7 +70,7 @@ def lasso_regression_test(datapath):
         i += 1
         real = Y_test[idx]
         ab = (pred - real) / real * 100
-        print("%.2f" % pred)
+        # print("%.2f" % pred)
 
 path = str(os.path.abspath('..'))
 dp = path + "\\dat\\sysUtilization1.csv"

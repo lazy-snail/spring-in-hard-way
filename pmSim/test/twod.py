@@ -29,7 +29,7 @@ from sklearn.model_selection import train_test_split
 path = str(os.path.abspath('..'))
 data = pd.read_csv(path + "//dat//sysUtilization2.csv")
 x_data = data.cpu
-y_data = data.power
+y_data = data.p
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -42,7 +42,7 @@ plt.legend("X1")
 plt.show()
 
 x_data = data.mem
-y_data = data.power
+y_data = data.p
 
 fig = plt.figure()
 ax = fig.add_subplot(111)

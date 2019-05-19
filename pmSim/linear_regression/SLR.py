@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 
 # 通过read_csv来读取我们的目的数据集
 path = str(os.path.abspath('..'))
-adv_data = pd.read_csv(path + "\dat\sysUtilization.csv")
+adv_data = pd.read_csv(path + "\dat\sysUtilization1.csv")
 # 清洗不需要的数据
 new_adv_data = adv_data.iloc[:, 0:5]
 # 得到我们所需要的数据集且查看其前几列以及数据形状
@@ -77,4 +77,4 @@ for idx in Y_test.index:
     real = Y_test[idx]
     ab = (pred - real) / real * 100
     # print("%.2f" % ab)
-    print("%.2f" % pred)
+    # print("%.2f" % pred)
