@@ -1,4 +1,3 @@
-// https://github.com/mourjo/VMScheduling
 
 package test;
 
@@ -395,3 +394,5 @@ public class Main {
         Log.setDisabled(true);                                         //设置禁用输出标志位true，即不可以输出
     }
 }
+
+// https://github.com/mourjo/VMScheduling
