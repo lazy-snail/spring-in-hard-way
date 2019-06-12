@@ -310,6 +310,13 @@ public class Main {
         } else {
             Log.setDisabled(false);                                                                        //设置禁用输出标志位false，即可以输出
             Log.printLine();                                                                               //打印消息和换行
+            System.out.println("___________________________________________________________________");
+            System.out.println("SlaTimePerActiveHost: " + getSlaTimePerActiveHost(datacenter.getHostList()));
+            System.out.println("SlaTimePerHost: " + Helper.getSlaTimePerHost(datacenter.getHostList()));
+            System.out.println("Power: " + datacenter.getPower());
+            System.out.println("MigrationCount: " + datacenter.getMigrationCount());
+            System.out.println("___________________________________________________________________");
+
             Log.printLine(String.format("Experiment name: " + experimentName));                            //打印：实验名称
             Log.printLine(String.format("Number of hosts: " + numberOfHosts));                             //打印：主机数量
             Log.printLine(String.format("Number of VMs: " + numberOfVms));                                 //打印：虚拟机数量

@@ -50,9 +50,11 @@ ax.set_xlabel('Memory utilization')
 ax.set_ylabel('CPU utilization')
 ax.set_zlabel('Power (watt)')  # 坐标轴
 ax.invert_xaxis()
+
 # 改变绘制图像的视角, 即相机的位置, azim沿着z轴旋转, elev沿着y轴, 默认：azim=-37.5, elev=30
 ax.view_init(azim=-37.5, elev=30)
+
 plt.show()
 
-plt.savefig('plot1.png')
-plt.close()
+# plt.savefig('plot1.png')
+# plt.close()
